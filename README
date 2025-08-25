@@ -1,0 +1,45 @@
+# Race Management Data Structure 🏃‍♀️
+
+Java implementation of a dynamic data structure for managing runners and their race results.
+Built for a Data Structures & Algorithms assignment.
+
+📄 Full task: [Assignment PDF](DS_Algs_W23_24_programming_assignment.pdf)
+
+---
+
+## 🔍 Problem Summary
+We need to store many runners (unique IDs) and many race times per runner, while supporting:
+- Add / remove runner
+- Add / remove a race time for a runner
+- Query a runner’s **minimum** and **average** time
+- Get the **fastest** runner by minimum/average time
+- **Rank** a runner by minimum/average time
+
+All operations are designed to be efficient (logarithmic where applicable).
+
+---
+
+## 🏗️ Implementation Overview
+
+**Main classes**
+- `Race.java` — Public API that manages runners and exposes all required operations.
+- `Runner.java` — Holds a runner’s times and aggregates needed for queries.
+- `RunKey.java` — Key structure used for ordering/fast lookups.
+- `RunnerID.java` (+ variants) — Abstract ID and comparison logic for flexible identifiers.
+- `TwoThreeTree.java` — Balanced 2–3 tree that guarantees logarithmic time for inserts/lookups.
+
+**Design notes**
+- 2–3 tree provides ordered storage with stable performance.
+- Tie-breaking uses runner ID (smaller ID wins when times are equal).
+- Invalid operations throw `IllegalArgumentException`.
+
+---
+
+## ▶️ How to Build & Run
+
+```bash
+# compile everything
+javac *.java
+
+# example: run your main / tests (if applicable)
+# java Race
