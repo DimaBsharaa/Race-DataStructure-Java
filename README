@@ -1,55 +1,63 @@
-# Race Management Data Structure 🏃‍♀️
+# Race-DataStructure-Java
 
-Java implementation of a dynamic data structure for managing runners and their race results.  
-Built for a **Data Structures & Algorithms assignment**.
-
-📄 Full task: [Assignment PDF](DS_Algs_W23_24_programming_assignment.pdf)
-
----
-
-## 🔍 Problem Summary
-We need to store many runners (unique IDs) and many race times per runner, while supporting:
-
-- ➕ Add / remove runner  
-- 🏁 Add / remove a race time for a runner  
-- ⏱️ Query a runner’s **minimum** and **average** time  
-- 🥇 Get the **fastest** runner by minimum/average time  
-- 📊 **Rank** a runner by minimum/average time  
-
-All operations are designed to be efficient (**logarithmic where applicable**).
+This project provides a comprehensive management system for tracking runners and their race results.  
+It was developed as part of the **Data Structures & Algorithms course** at Technion.  
+The implementation is in **Java** and includes multiple classes for managing runners, race times, and queries using efficient balanced tree structures.
 
 ---
 
-## 🏗️ Implementation Overview
+## Features
 
-### Main Classes
-- **`Race.java`** → Public API that manages runners and exposes all required operations.  
-- **`Runner.java`** → Holds a runner’s times and aggregates needed for queries.  
-- **`RunKey.java`** → Key structure used for ordering/fast lookups.  
-- **`RunnerID.java`** (+ variants) → Abstract ID and comparison logic for flexible identifiers.  
-- **`TwoThreeTree.java`** → Balanced 2–3 tree that guarantees logarithmic time for inserts/lookups.  
+### Runner Management
+- **Creation & Removal**: Runners can be added or removed from the system.
+- **Race Times**: Race results can be inserted or deleted for each runner.
 
----
+### Queries
+- **Minimum / Average Time**: Retrieve the minimum or average race time of a given runner.  
+- **Fastest Runner**: Retrieve the runner with the smallest minimum or average time.  
+- **Ranking**: Determine the rank of a runner based on minimum or average times.
 
-## ✅ Features
-- Logarithmic inserts/deletes/queries thanks to the balanced tree  
-- Abstracted runner ID types (float, ±∞ variants as needed)  
-- Clear error handling  
-- Spec included in repo  
-
----
-
-## 📦 Repo Contents
-- Source: `Race.java`, `Runner.java`, `RunKey.java`, `RunnerID*.java`, `TwoThreeTree.java`  
-- Spec: `DS_Algs_W23_24_programming_assignment.pdf`  
+### Data Structure
+- All operations are designed for efficiency:
+  - Add/remove runner → **O(log n)**
+  - Add/remove race time → **O(log n + log m_runner)**
+  - Queries (min/avg time) → **O(log n)**
+  - Fastest runner → **O(1)**
+  - Rank by time → **O(log n)**
 
 ---
 
-## ▶️ How to Build & Run
+## Classes and Their Functions
 
+- **Race**:  
+  Main class managing the competition, exposing all required public operations.
+
+- **Runner**:  
+  Represents a runner, stores their race results, and provides aggregation methods.
+
+- **RunKey**:  
+  Defines key structures for storing and comparing race entries.
+
+- **RunnerID** (abstract) & **variants (RunnerIDFloat, RunnerIDInfinity, RunnerIDMInfinity, RunnerIDExtent)**:  
+  Encapsulate runner identifiers and provide comparison logic.
+
+- **TwoThreeTree**:  
+  Balanced 2–3 tree used as the primary data structure, ensuring logarithmic insert, delete, and search operations.
+
+---
+
+## Repository Contents
+- `Race.java` — Core management class  
+- `Runner.java` — Runner representation and stats  
+- `RunKey.java` — Key utility for race entries  
+- `RunnerID.java` & extensions — Runner ID abstractions  
+- `TwoThreeTree.java` — Balanced tree implementation  
+- `DS_Algs_W23_24_programming_assignment.pdf` — Full assignment specification  
+
+---
+
+## How to Build & Run
+
+Compile all files:
 ```bash
-# compile everything
 javac *.java
-
-# run your main (or Race test)
-java Race
